@@ -1,0 +1,109 @@
+= OpenSSH Server Image
+Jordan Williams <jordan@jwillikers.com>
+:experimental:
+:icons: font
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:Podman: https://podman.io/[Podman]
+:Buildah: https://buildah.io/[Buildah]
+:Fedora: https://getfedora.org/[Fedora]
+
+// todo image:https://img.shields.io/github/workflow/status/jwillikers/openfortivpn-container[GitHub Workflow Status]
+
+A container image for running an OpenSSH server, based on {Fedora}.
+
+== Quick Start
+
+. To run the OpenSSH server in this image, run the container using {Podman}.
++
+[source,sh]
+----
+➜ podman run --rm -p 2222:22 -dt --name my-openssh-server localhost/openssh-server
+----
+
+. The container should then be accessible using SSH from the local machine.
++
+[source,sh]
+----
+➜ ssh -p 2222 user@127.0.0.1
+----
+
+. Enter the default password which is `password`.
+
+== Build
+
+Use {Buildah} to build the image.
+
+. Install the necessary dependencies.
++
+[source,sh]
+----
+➜ sudo dnf -y install git buildah podman
+----
+
+. Clone this repository.
++
+[source,sh]
+----
+➜ git -C ~/Projects clone git@github.com:jwillikers/openssh-server-image.git
+----
+
+. Run the shell script.
++
+[source,sh
+----
+➜ ~/Projects/openssh-server-image/openssh-server-image-minimal.sh
+----
+
+// https://developers.redhat.com/blog/2019/08/14/best-practices-for-running-buildah-in-a-container#setup
+
+// mkdir containers
+// -v /var/lib/containers/storage:/var/lib/shared:ro
+
+//. Run the shell script.
+//+
+//[source,sh]
+//----
+//➜ podman run --rm --volume containers:/var/lib/containers:Z --volume "$PWD":/home/buildah:z --workdir /home/buildah --device /dev/fuse quay.io/buildah/stable buildah unshare ./openssh-server-image.sh
+//----
+
+== Contributing
+
+Contributions in the form of issues, feedback, and even pull requests are welcome.
+Make sure to adhere to the project's link:CODE_OF_CONDUCT.adoc[Code of Conduct].
+
+== Open Source Software
+
+This project is built on the hard work of countless open source contributors.
+Several of these projects are enumerated below.
+
+* https://www.ansible.com/[Ansible]
+* https://asciidoctor.org/[Asciidoctor]
+* {Fedora}
+* https://git-scm.com/[Git]
+* https://www.linuxfoundation.org/[Linux]
+* https://molecule.readthedocs.io/en/latest/[Molecule]
+* https://www.openssh.com/[OpenSSH]
+* https://podman.io/[Podman]
+* https://www.python.org/[Python]
+* https://rouge.jneen.net/[Rouge]
+* https://www.ruby-lang.org/en/[Ruby]
+
+== Code of Conduct
+
+The project's Code of Conduct is available in the link:CODE_OF_CONDUCT.adoc[Code of Conduct] file.
+
+== License
+
+This repository is licensed under the https://www.gnu.org/licenses/gpl-3.0.html[GPLv3], available in the link:LICENSE.adoc[license file].
+
+© 2021 Jordan Williams
+
+== Authors
+
+mailto:{email}[{author}]
