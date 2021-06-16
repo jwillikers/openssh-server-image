@@ -9,13 +9,14 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
-:Podman: https://podman.io/[Podman]
 :Buildah: https://buildah.io/[Buildah]
 :Fedora: https://getfedora.org/[Fedora]
+:OpenSSH: https://www.openssh.com/[OpenSSH]
+:Podman: https://podman.io/[Podman]
 
-// todo image:https://img.shields.io/github/workflow/status/jwillikers/openfortivpn-container[GitHub Workflow Status]
+// todo image:https://img.shields.io/github/workflow/status/jwillikers/openssh-server-image[GitHub Workflow Status]
 
-A container image for running an OpenSSH server, based on {Fedora}.
+A container image for running an {OpenSSH} server, based on {Fedora}.
 
 == Quick Start
 
@@ -82,14 +83,13 @@ Make sure to adhere to the project's link:CODE_OF_CONDUCT.adoc[Code of Conduct].
 This project is built on the hard work of countless open source contributors.
 Several of these projects are enumerated below.
 
-* https://www.ansible.com/[Ansible]
 * https://asciidoctor.org/[Asciidoctor]
+* {Buildah}
 * {Fedora}
 * https://git-scm.com/[Git]
 * https://www.linuxfoundation.org/[Linux]
-* https://molecule.readthedocs.io/en/latest/[Molecule]
-* https://www.openssh.com/[OpenSSH]
-* https://podman.io/[Podman]
+* {OpenSSH}
+* {Podman}
 * https://www.python.org/[Python]
 * https://rouge.jneen.net/[Rouge]
 * https://www.ruby-lang.org/en/[Ruby]
