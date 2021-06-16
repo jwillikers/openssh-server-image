@@ -34,6 +34,8 @@ buildah config --port 22 "$CONTAINER"
 # Start sshd
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
+buildah tag "$CONTAINER" latest 34
+
 # Save the container to an image
 buildah commit --squash "$CONTAINER" openssh-server
 

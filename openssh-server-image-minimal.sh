@@ -26,6 +26,8 @@ buildah config --port 22 "$CONTAINER"
 
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
+buildah tag "$CONTAINER" latest 34
+
 buildah commit "$CONTAINER" openssh-server
 
 buildah rm "$CONTAINER"
