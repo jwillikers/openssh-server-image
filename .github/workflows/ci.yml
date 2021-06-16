@@ -61,7 +61,7 @@ jobs:
       - name: Push To quay.io
         id: push-to-quay
         run: |
-          echo "::set-output name=registry-paths::$(buildah push --creds jwillikers:${{ secrets.REGISTRY_PASSWORD }} openssh-server quay.io/jwillikers)"
+          echo "::set-output name=registry-paths::$(buildah push --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server quay.io/jwillikers)"
 
       - name: Print image url
         run: echo "Image pushed to ${{ steps.push-to-quay.outputs.registry-paths }}"
