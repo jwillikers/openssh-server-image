@@ -60,5 +60,5 @@ jobs:
 
       - name: Push To quay.io
         id: push-to-quay
-        run: buildah push --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server quay.io/jwillikers/openssh-server
+        run: buildah push --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server quay.io/jwillikers/openssh-server:34
 
