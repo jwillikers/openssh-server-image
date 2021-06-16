@@ -24,7 +24,7 @@ A container image for running an {OpenSSH} server, based on {Fedora}.
 +
 [source,sh]
 ----
-➜ podman run --rm -p 2222:22 -dt --name my-openssh-server localhost/openssh-server
+➜ podman run --rm -p 2222:22 -dt --name my-openssh-server quay.io/jwillikers/openssh-server
 ----
 
 . The container should then be accessible using SSH from the local machine.
