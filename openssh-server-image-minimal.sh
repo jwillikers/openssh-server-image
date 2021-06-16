@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# Create a container
 CONTAINER=$(buildah from --arch amd64 registry.fedoraproject.org/fedora-minimal:latest)
+IMAGE="openssh-server"
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'
 
@@ -26,8 +26,8 @@ buildah config --port 22 "$CONTAINER"
 
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
-buildah tag "$CONTAINER" latest 34
-
-buildah commit "$CONTAINER" openssh-server
+buildah commit "$CONTAINER" "$IMAGE"
 
 buildah rm "$CONTAINER"
+
+buildah tag "$IMAGE" 34

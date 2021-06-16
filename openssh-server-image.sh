@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# Create a container
 CONTAINER=$(buildah from --arch amd64 scratch)
+IMAGE="openssh-server"
 
 # Mount the container filesystem
 MOUNTPOINT=$(buildah mount "$CONTAINER")
@@ -28,16 +28,13 @@ buildah run "$CONTAINER" /bin/sh -c 'useradd -ms /bin/bash user'
 
 buildah run "$CONTAINER" /bin/sh -c 'echo password | passwd --stdin user'
 
-# Expose Port 22/tcp
 buildah config --port 22 "$CONTAINER"
 
-# Start sshd
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
-buildah tag "$CONTAINER" latest 34
-
-# Save the container to an image
-buildah commit --squash "$CONTAINER" openssh-server
+buildah commit "$CONTAINER" "$IMAGE"
 
 buildah rm "$CONTAINER"
+
+buildah tag "$IMAGE" 34
 
