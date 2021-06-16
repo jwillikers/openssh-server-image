@@ -37,12 +37,8 @@ jobs:
     steps:
       - name: Push To quay.io
         id: push-to-quay
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: openssh-server
-          tags: latest 34
-          registry: quay.io/jwillikers
-          username: jwillikers
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+        run: |
+          echo "::set-output name=registry-paths::$(buildah push --creds jwillikers:${{ secrets.REGISTRY_PASSWORD }} openssh-server quay.io/jwillikers)"
+
       - name: Print image url
         run: echo "Image pushed to ${{ steps.push-to-quay.outputs.registry-paths }}"
