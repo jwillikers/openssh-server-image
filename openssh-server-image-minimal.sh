@@ -31,4 +31,3 @@ buildah tag "$CONTAINER" latest 34
 buildah commit "$CONTAINER" openssh-server
 
 buildah rm "$CONTAINER"
-
