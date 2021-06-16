@@ -2,7 +2,7 @@
 set -o errexit
 
 # Create a container
-CONTAINER=$(buildah from scratch)
+CONTAINER=$(buildah from --arch amd64 scratch)
 
 # Mount the container filesystem
 MOUNTPOINT=$(buildah mount "$CONTAINER")

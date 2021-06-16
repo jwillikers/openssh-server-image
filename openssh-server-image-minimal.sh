@@ -2,7 +2,7 @@
 set -o errexit
 
 # Create a container
-CONTAINER=$(buildah from registry.fedoraproject.org/fedora-minimal:latest)
+CONTAINER=$(buildah from --arch amd64 registry.fedoraproject.org/fedora-minimal:latest)
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'
 
