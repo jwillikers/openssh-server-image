@@ -26,7 +26,7 @@ jobs:
     steps:
       - name: Run the image and verify the OpenSSH server is available
         run: |
-          podman run --name test-container -d -p 2222:22 openssh-server
+          podman run --name test-container -d -p 2222:22 localhost/openssh-server
           sleep 5
           nc -z localhost 22
   
