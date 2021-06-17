@@ -9,7 +9,7 @@ Help()
    # Display Help
    echo "Generate a container image using an OpenSSH server with Buildah."
    echo
-   echo "Syntax: openssh-server-image.sh [-a|h]"
+   echo "Syntax: openssh-server-image-minimal.sh [-a|h]"
    echo "options:"
    echo "a     Build for the specified target architecture, i.e. aarch64, arm, i686, ppc64le, s390x, or x86_64."
    echo "h     Print this Help."
@@ -23,25 +23,25 @@ Help()
 ############################################################
 
 # Set variables
-ARCH="x86_64"
+ARCHITECTURE="x86_64"
 
 ############################################################
 # Process the input options. Add options as needed.        #
 ############################################################
-while getopts ":ah:" option; do
+while getopts ":a:h" option; do
    case $option in
       h) # display Help
          Help
          exit;;
       a) # Enter a target architecture
-         ARCH=$OPTARG;;
+         ARCHITECTURE=$OPTARG;;
      \?) # Invalid option
          echo "Error: Invalid option"
          exit;;
    esac
 done
 
-CONTAINER=$(buildah from --arch "$ARCH" registry.fedoraproject.org/fedora-minimal:latest)
+CONTAINER=$(buildah from --arch "$ARCHITECTURE" registry.fedoraproject.org/fedora-minimal:latest)
 IMAGE="openssh-server"
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'
@@ -62,8 +62,10 @@ buildah config --port 22 "$CONTAINER"
 
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
+buildah config --author "jordan@jwillikers.com" "$CONTAINER"
+
+buildah config --comment "An OpenSSH server" "$CONTAINER"
+
 buildah commit "$CONTAINER" "$IMAGE"
 
 buildah rm "$CONTAINER"
-
-buildah tag "$IMAGE" 34

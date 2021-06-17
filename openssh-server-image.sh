@@ -28,20 +28,20 @@ ARCH="x86_64"
 ############################################################
 # Process the input options. Add options as needed.        #
 ############################################################
-while getopts ":ah:" option; do
+while getopts ":a:h" option; do
    case $option in
       h) # display Help
          Help
          exit;;
       a) # Enter a target architecture
-         ARCH=$OPTARG;;
+         ARCHITECTURE=$OPTARG;;
      \?) # Invalid option
          echo "Error: Invalid option"
          exit;;
    esac
 done
 
-CONTAINER=$(buildah from --arch "$ARCH" scratch)
+CONTAINER=$(buildah from --arch "$ARCHITECTURE" scratch)
 IMAGE="openssh-server"
 
 # Mount the container filesystem
@@ -68,9 +68,10 @@ buildah config --port 22 "$CONTAINER"
 
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
+buildah config --author "jordan@jwillikers.com" "$CONTAINER"
+
+buildah config --comment "An OpenSSH server" "$CONTAINER"
+
 buildah commit "$CONTAINER" "$IMAGE"
 
 buildah rm "$CONTAINER"
-
-buildah tag "$IMAGE" 34
-
