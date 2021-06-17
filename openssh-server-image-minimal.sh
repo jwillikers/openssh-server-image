@@ -1,7 +1,47 @@
 #!/usr/bin/env bash
 set -o errexit
 
-CONTAINER=$(buildah from --arch x86_64 registry.fedoraproject.org/fedora-minimal:latest)
+############################################################
+# Help                                                     #
+############################################################
+Help()
+{
+   # Display Help
+   echo "Generate a container image using an OpenSSH server with Buildah."
+   echo
+   echo "Syntax: openssh-server-image.sh [-a|h]"
+   echo "options:"
+   echo "a     Build for the specified target architecture, i.e. aarch64, arm, i686, ppc64le, s390x, or x86_64."
+   echo "h     Print this Help."
+   echo
+}
+
+############################################################
+############################################################
+# Main program                                             #
+############################################################
+############################################################
+
+# Set variables
+ARCH="x86_64"
+
+############################################################
+# Process the input options. Add options as needed.        #
+############################################################
+while getopts ":ah:" option; do
+   case $option in
+      h) # display Help
+         Help
+         exit;;
+      a) # Enter a target architecture
+         ARCH=$OPTARG;;
+     \?) # Invalid option
+         echo "Error: Invalid option"
+         exit;;
+   esac
+done
+
+CONTAINER=$(buildah from --arch "$ARCH" registry.fedoraproject.org/fedora-minimal:latest)
 IMAGE="openssh-server"
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'
