@@ -11,7 +11,7 @@ Help()
    echo
    echo "Syntax: openssh-server-image.sh [-a|h]"
    echo "options:"
-   echo "a     Build for the specified target architecture, i.e. aarch64, arm, i686, ppc64le, s390x, or x86_64."
+   echo "a     Build for the specified target architecture, i.e. aarch64, arm, i686, ppc64le, s390x, or amd64."
    echo "h     Print this Help."
    echo
 }
@@ -23,7 +23,7 @@ Help()
 ############################################################
 
 # Set variables
-ARCH="x86_64"
+ARCHITECTURE="amd64"
 
 ############################################################
 # Process the input options. Add options as needed.        #

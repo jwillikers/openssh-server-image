@@ -17,7 +17,7 @@ jobs:
       matrix:
         arch:
           - arm64
-          - x86_64
+          - amd64
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
       matrix:
         arch:
           - arm64
-          - x86_64
+          - amd64
     steps:
       - uses: actions/download-artifact@v2
         with:
@@ -65,7 +65,7 @@ jobs:
       matrix:
         arch:
           - arm64
-          - x86_64
+          - amd64
     steps:
       - uses: actions/download-artifact@v2
         with:
