@@ -11,7 +11,7 @@ Help()
    echo
    echo "Syntax: openssh-server-image-minimal.sh [-a|h]"
    echo "options:"
-   echo "a     Build for the specified target architecture, i.e. aarch64, arm, i686, ppc64le, s390x, or amd64."
+   echo "a     Build for the specified target architecture, i.e. arm64v8, arm32v7, or amd64."
    echo "h     Print this Help."
    echo
 }
@@ -63,8 +63,6 @@ buildah config --port 22 "$CONTAINER"
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
 buildah config --author "jordan@jwillikers.com" "$CONTAINER"
-
-buildah config --comment "An OpenSSH server" "$CONTAINER"
 
 buildah commit "$CONTAINER" "$IMAGE"
 
