@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit
 
-CONTAINER=$(buildah from --arch amd64 registry.fedoraproject.org/fedora-minimal:latest)
+CONTAINER=$(buildah from --arch x86_64 registry.fedoraproject.org/fedora-minimal:latest)
 IMAGE="openssh-server"
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'

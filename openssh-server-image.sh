@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit
 
-CONTAINER=$(buildah from --arch amd64 scratch)
+CONTAINER=$(buildah from --arch x86_64 scratch)
 IMAGE="openssh-server"
 
 # Mount the container filesystem
