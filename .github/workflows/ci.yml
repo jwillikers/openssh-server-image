@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         arch:
-          - arm64v8
+          - arm64
           - amd64
     steps:
       - name: Check out the repository
@@ -40,7 +40,7 @@ jobs:
     strategy:
       matrix:
         arch:
-          - arm64v8
+          - arm64
           - amd64
     steps:
       - uses: actions/download-artifact@v2
@@ -67,12 +67,12 @@ jobs:
 
       - uses: actions/download-artifact@v2
         with:
-          name: openssh-server-arm64v8
+          name: openssh-server-arm64
 
-      - name: Load the arm64v8 image
-        run: podman image load -i openssh-server-arm64v8.tar
+      - name: Load the arm64 image
+        run: podman image load -i openssh-server-arm64.tar
               
-      - name: Add the arm64v8 image to the manifest
+      - name: Add the arm64 image to the manifest
         run: buildah manifest add openssh-server-multiarch:latest localhost/openssh-server
 
       - uses: actions/download-artifact@v2
