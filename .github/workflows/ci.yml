@@ -88,6 +88,8 @@ jobs:
       - name: Add the amd64 image to the manifest
         run: buildah manifest add openssh-server-multiarch:latest localhost/openssh-server
 
-      - name: Push to quay.io
-        id: push-to-quay
+      - name: Push latest manifest and images to quay.io
         run: buildah manifest push --all --rm --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server-multiarch:latest docker://quay.io/jwillikers/openssh-server:latest
+
+      - name: Push tag 34 to quay.io
+        run: buildah manifest push --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server-multiarch:latest docker://quay.io/jwillikers/openssh-server:34
