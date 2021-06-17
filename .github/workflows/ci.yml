@@ -90,4 +90,4 @@ jobs:
 
       - name: Push to quay.io
         id: push-to-quay
-        run: buildah manifest push --all --rm --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server-multiarch:latest quay.io/jwillikers/openssh-server:34
+        run: buildah manifest push --all --rm --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server-multiarch:latest docker://quay.io/jwillikers/openssh-server:34
