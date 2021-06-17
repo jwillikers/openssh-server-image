@@ -21,7 +21,7 @@ A container image for running an {OpenSSH} server, built on {Fedora}.
 
 == Quick Start
 
-Supported architectures:: amd64, arm32v7, arm64v8
+Supported architectures:: `amd64`, `arm32v7`, `arm64v8`
 
 . To run the OpenSSH server in this image, run the container using {Podman}.
 +

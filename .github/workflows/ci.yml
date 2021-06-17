@@ -29,6 +29,9 @@ jobs:
       - name: Build the image with Buildah
         run: ./openssh-server-image-minimal.sh -a ${{ matrix.arch }}
 
+      - name: Tag the image for Fedora 34
+        run: podman tag localhost/openssh-server localhost/openssh-server:34
+
       - name: Export the image
         run: podman image save --format oci-archive -o openssh-server-${{ matrix.arch }}.tar localhost/openssh-server
 
@@ -104,7 +107,4 @@ jobs:
         run: buildah manifest add openssh-server-multiarch:latest localhost/openssh-server
 
       - name: Push latest manifest and images to quay.io
-        run: buildah manifest push --all --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server-multiarch:latest docker://quay.io/jwillikers/openssh-server:latest
-
-      - name: Push tag 34 to quay.io
-        run: buildah manifest push --rm --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server-multiarch:latest docker://quay.io/jwillikers/openssh-server:34
+        run: buildah manifest push --rm --all --creds jwillikers+publisher:${{ secrets.REGISTRY_PASSWORD }} openssh-server-multiarch:latest docker://quay.io/jwillikers/openssh-server
