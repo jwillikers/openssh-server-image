@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: openssh-server
+          name: openssh-server-${{ matrix.arch }}
           path: openssh-server.tar
 
   test:
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: openssh-server
+          name: openssh-server-${{ matrix.arch }}
 
       - name: Load the image
         run: podman image load -i openssh-server.tar
@@ -69,7 +69,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: openssh-server
+          name: openssh-server-${{ matrix.arch }}
 
       - name: Load the image
         run: podman image load -i openssh-server.tar
