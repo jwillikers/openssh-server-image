@@ -57,7 +57,7 @@ Use {Buildah} to build the image.
 
 . Run the shell script.
 +
-[source,sh
+[source,sh]
 ----
 ➜ ~/Projects/openssh-server-image/openssh-server-image-minimal.sh
 ----
@@ -71,7 +71,7 @@ Use {Buildah} to build the image.
 //+
 //[source,sh]
 //----
-//➜ podman run --rm --volume containers:/var/lib/containers:Z --volume "$PWD":/home/buildah:z --workdir /home/buildah --device /dev/fuse quay.io/buildah/stable buildah unshare ./openssh-server-image.sh
+//➜ podman run --rm --volume containers:/var/lib/containers:Z --volume "$PWD":/home/buildah:z --workdir /home/buildah --device /dev/fuse quay.io/buildah/stable buildah unshare openssh-server-image.sh
 //----
 
 == Contributing
