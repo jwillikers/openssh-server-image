@@ -14,12 +14,8 @@ dnf clean all -y --installroot "$MOUNTPOINT" --releasever 34
 
 buildah unmount "$CONTAINER"
 
-buildah run "$CONTAINER" /bin/sh -c 'echo "LogLevel DEBUG2" > /etc/ssh/sshd_config.d/99-clion.conf'
+buildah copy "$CONTAINER" 99-sshd.conf /etc/ssh/sshd_config.d/99-sshd.conf
 
-buildah run "$CONTAINER" /bin/sh -c 'echo "PermitRootLogin yes" >> /etc/ssh/sshd_config.d/99-clion.conf'
-buildah run "$CONTAINER" /bin/sh -c 'echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config.d/99-clion.conf'
-buildah run "$CONTAINER" /bin/sh -c 'echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config.d/99-clion.conf'
-# buildah run "$CONTAINER" /bin/sh -c 'echo "Subsystem sftp /usr/lib/openssh/sftp-server" >> /etc/ssh/sshd_config.d/99-clion.conf'
 buildah run "$CONTAINER" /bin/sh -c 'mkdir /run/sshd'
 
 buildah run "$CONTAINER" /bin/sh -c 'ssh-keygen -A'
