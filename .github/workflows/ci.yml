@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         arch:
+          - arm
           - arm64
           - amd64
     steps:
@@ -43,6 +44,7 @@ jobs:
     strategy:
       matrix:
         arch:
+          - arm
           - arm64
           - amd64
     steps:
@@ -68,6 +70,18 @@ jobs:
       - name: Create a manifest
         run: buildah manifest create openssh-server-multiarch:latest
 
+      # armhfp
+      - uses: actions/download-artifact@v2
+        with:
+          name: openssh-server-arm
+
+      - name: Load the arm64 image
+        run: podman image load -i openssh-server-arm.tar
+              
+      - name: Add the arm image to the manifest
+        run: buildah manifest add openssh-server-multiarch:latest localhost/openssh-server
+
+      # aarch64
       - uses: actions/download-artifact@v2
         with:
           name: openssh-server-arm64
@@ -78,6 +92,7 @@ jobs:
       - name: Add the arm64 image to the manifest
         run: buildah manifest add openssh-server-multiarch:latest localhost/openssh-server
 
+      # x86_64
       - uses: actions/download-artifact@v2
         with:
           name: openssh-server-amd64
