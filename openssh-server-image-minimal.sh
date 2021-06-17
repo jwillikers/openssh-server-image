@@ -11,7 +11,7 @@ Help()
    echo
    echo "Syntax: openssh-server-image-minimal.sh [-a|h]"
    echo "options:"
-   echo "a     Build for the specified target architecture, i.e. arm64v8, arm32v7, or amd64."
+   echo "a     Build for the specified target architecture, i.e. amd64, arm, arm64."
    echo "h     Print this Help."
    echo
 }
@@ -23,7 +23,7 @@ Help()
 ############################################################
 
 # Set variables
-ARCHITECTURE="amd64"
+ARCHITECTURE="$(podman info --format={{".Host.Arch"}})"
 
 ############################################################
 # Process the input options. Add options as needed.        #
