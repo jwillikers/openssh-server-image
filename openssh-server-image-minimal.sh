@@ -44,6 +44,10 @@ done
 CONTAINER=$(buildah from --arch "$ARCHITECTURE" registry.fedoraproject.org/fedora-minimal:latest)
 IMAGE="openssh-server"
 
+buildah run "$CONTAINER" /bin/sh -c 'microdnf -y upgrade'
+
+buildah run "$CONTAINER" /bin/sh -c 'microdnf -y reinstall shadow-utils'
+
 buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf clean all -y'
@@ -54,7 +58,9 @@ buildah run "$CONTAINER" /bin/sh -c 'mkdir /run/sshd'
 
 buildah run "$CONTAINER" /bin/sh -c 'ssh-keygen -A'
 
-buildah run "$CONTAINER" /bin/sh -c 'useradd -ms /bin/bash user'
+buildah run "$CONTAINER" /bin/sh -c 'useradd user'
+
+buildah run "$CONTAINER" /bin/sh -c 'chown user:user -R /home/user'
 
 buildah run "$CONTAINER" /bin/sh -c 'echo password | passwd --stdin user'
 
