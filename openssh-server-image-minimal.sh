@@ -68,6 +68,8 @@ buildah config --port 22 "$CONTAINER"
 
 buildah config --cmd "/usr/sbin/sshd -D -e" "$CONTAINER"
 
+buildah config --label "io.containers.autoupdate=registry" "$CONTAINER"
+
 buildah config --author "jordan@jwillikers.com" "$CONTAINER"
 
 buildah commit "$CONTAINER" "$IMAGE"
