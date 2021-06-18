@@ -60,7 +60,9 @@ buildah run "$CONTAINER" /bin/sh -c 'mkdir /run/sshd'
 
 buildah run "$CONTAINER" /bin/sh -c 'ssh-keygen -A'
 
-buildah run "$CONTAINER" /bin/sh -c 'useradd -ms /bin/bash user'
+buildah run "$CONTAINER" /bin/sh -c 'useradd user'
+
+buildah run "$CONTAINER" /bin/sh -c 'chown user:user -R /home/user'
 
 buildah run "$CONTAINER" /bin/sh -c 'echo password | passwd --stdin user'
 
