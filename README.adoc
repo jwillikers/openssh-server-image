@@ -15,7 +15,6 @@ endif::[]
 :Podman: https://podman.io/[Podman]
 
 image:https://img.shields.io/github/workflow/status/jwillikers/openssh-server-image/CI/main[GitHub Workflow Status]
-image:https://quay.io/repository/jwillikers/openssh-server/status["Docker Repository on Quay", link="https://quay.io/repository/jwillikers/openssh-server"]
 
 A container image for running an {OpenSSH} server, built on {Fedora}.
 
