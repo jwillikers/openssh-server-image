@@ -26,7 +26,7 @@ Supported architectures:: `amd64`, `arm32v7`, `arm64v8`
 +
 [source,sh]
 ----
-➜ podman run --rm -p 2222:22 -dt --name my-openssh-server quay.io/jwillikers/openssh-server
+➜ podman run --rm -p 2222:22 -dt --name my-openssh-server quay.io/jwillikers/openssh-server:latest
 ----
 
 . The container should then be accessible using SSH from the local machine.
