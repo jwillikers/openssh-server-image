@@ -52,6 +52,8 @@ buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd s
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf clean all -y'
 
+buildah run "$CONTAINER" /bin/sh -c 'localedef --quiet -c -i en_US -f UTF-8 en_US.UTF-8'
+
 buildah copy "$CONTAINER" 99-sshd.conf /etc/ssh/sshd_config.d/99-sshd.conf
 
 # pam_loginuid wants to write to /proc/self/loginuid on new ssh session but can't.
