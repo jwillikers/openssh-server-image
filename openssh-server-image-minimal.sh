@@ -59,7 +59,7 @@ buildah copy "$CONTAINER" 99-sshd.conf /etc/ssh/sshd_config.d/99-sshd.conf
 # pam_loginuid wants to write to /proc/self/loginuid on new ssh session but can't.
 # https://github.com/lxc/lxc/issues/661#issuecomment-222444916
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=726661
-buildah run "$CONTAINER" /bin/sh -c '/usr/bin/sed -i -e \'/pam_loginuid\.so$/ s/required/optional/\' /etc/pam.d/*'
+buildah run "$CONTAINER" /bin/sh -c '/usr/bin/sed -i -e "/pam_loginuid\.so$/ s/required/optional/" /etc/pam.d/*'
 
 buildah run "$CONTAINER" /bin/sh -c 'mkdir /run/sshd'
 
