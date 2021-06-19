@@ -48,7 +48,7 @@ buildah run "$CONTAINER" /bin/sh -c 'microdnf -y upgrade'
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf -y reinstall shadow-utils'
 
-buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'
+buildah run "$CONTAINER" /bin/sh -c 'microdnf install -y glibc-locale-source openssh-server passwd shadow-utils --nodocs --setopt install_weak_deps=0'
 
 buildah run "$CONTAINER" /bin/sh -c 'microdnf clean all -y'
 
