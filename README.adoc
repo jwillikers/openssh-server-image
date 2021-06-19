@@ -63,6 +63,13 @@ Use {Buildah} to build the image.
 ➜ ~/Projects/openssh-server-image/openssh-server-image-minimal.sh
 ----
 
+. Test the new image.
++
+[source,sh]
+----
+➜ ~/Projects/openssh-server-image/test.sh
+----
+
 // https://developers.redhat.com/blog/2019/08/14/best-practices-for-running-buildah-in-a-container#setup
 
 // mkdir containers
