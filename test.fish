@@ -16,13 +16,14 @@ if set -q _flag_name
     set name $_flag_name
 end
 
-podman run --rm -p 2222:22 --name test-container -dt localhost/:$name:latest
+podman run --rm -p 2222:22 --name test-container -dt localhost/$name:latest
 or exit
 
 sleep 5
 or exit
 
-nc -z localhost 22
+podman run --rm --network host -it docker.io/toolbelt/netcat:latest \
+    -z localhost 2222
 or exit
 
 podman stop test-container

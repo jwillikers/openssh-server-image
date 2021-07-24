@@ -78,9 +78,6 @@ or exit
 buildah config --cmd '["/usr/sbin/sshd", "-D", "-e"]' $container
 or exit
 
-buildah config --user user $container
-or exit
-
 buildah config --label io.containers.autoupdate=registry $container
 or exit
 
