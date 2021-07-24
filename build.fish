@@ -53,22 +53,20 @@ or exit
 mkdir -p $mountpoint/run/sshd
 or exit
 
-podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedoraproject.org/fedora:latest \
-    bash -c "ssh-keygen -A -f $mountpoint"
+ssh-keygen -A -f $mountpoint
 or exit
 
-buildah copy $container 99-sshd.conf /etc/ssh/sshd_config.d/99-sshd.conf
-or exit
+set -l script_directory (dirname (status --current-filename))
 
-podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedoraproject.org/fedora:latest \
-    bash -c "useradd --root /mnt user"
+cp $script_directory/99-sshd.conf $mountpoint/etc/ssh/sshd_config.d/99-sshd.conf
 or exit
 
 podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedoraproject.org/fedora:latest \
     bash -c "useradd --root /mnt user"
 or exit
 
-buildah run $container bash -c "echo password | passwd --stdin user"
+podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedoraproject.org/fedora:latest \
+    bash -c "chpasswd --root /mnt user:password"
 or exit
 
 buildah unmount $container
