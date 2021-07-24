@@ -1,14 +1,21 @@
 {
     "cSpell.words": [
         "Buildah",
+        "Entrypoint",
         "Podman",
+        "Silverblue",
         "aarch",
         "adoc",
         "armhfp",
+        "autoupdate",
+        "commit's",
         "creds",
+        "ifdef",
         "jwillikers",
         "multiarch",
         "openfortivpn",
+        "ostree",
+        "sbin",
         "sh",
         "workdir"
     ]
