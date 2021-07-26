@@ -36,9 +36,13 @@ Supported architectures::
 * `arm` _(armhfp)_
 * `arm64` _(aarch64)_
 
-User:: The default user inside the container is named `user`.
+Users::
+`root`::: The default user inside the container is `root` since the OpenSSH server must be started by the superuser.
+`user`::: A user named `user` is also created with the default password `password`.
 
-Password:: The default password for `user` is `password`.
+Volumes::
+`/etc/ssh`::: Where the container's own server-side SSH keys reside as well as various configuration files.
+`/home/user/.ssh`::: The default user's SSH keys and configuration.
 
 Cmd:: `["/usr/sbin/sshd", "-D", "-e"]`
 
