@@ -66,7 +66,7 @@ podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedora
 or exit
 
 podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedoraproject.org/fedora:latest \
-    bash -c "chpasswd --root /mnt user:password"
+    bash -c "echo user:password | chpasswd --root /mnt"
 or exit
 
 buildah unmount $container
