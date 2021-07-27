@@ -72,7 +72,10 @@ or exit
 buildah unmount $container
 or exit
 
-buildah config --volume '["/etc/ssh", "/home/user/.ssh"]' $container
+buildah config --volume /etc/ssh $container
+or exit
+
+buildah config --volume /home/user/.ssh $container
 or exit
 
 buildah config --port 22 $container
