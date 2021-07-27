@@ -55,14 +55,18 @@ Labels::
 +
 [source,sh]
 ----
-➜ podman run --rm -p 2222:22 -dt --name my-openssh-server quay.io/jwillikers/openssh-server:latest
+podman run \
+  --rm \
+  -p 2222:22 \
+  --name openssh-server \
+  -dt quay.io/jwillikers/openssh-server:latest
 ----
 
 . The container should then be accessible using SSH from the local machine.
 +
 [source,sh]
 ----
-➜ ssh -p 2222 user@127.0.0.1
+ssh -p 2222 user@127.0.0.1
 ----
 
 . Enter the default password for the user named `user`, which is `password`.
@@ -152,8 +156,7 @@ Several of these projects are enumerated below.
 * {Fedora}
 * {Fedora-Silverblue}
 * {fish}
-* {Git
-* https://git-scm.com/[Git]
+* {Git}
 * https://www.linuxfoundation.org/[Linux]
 * {OpenSSH}
 * {Podman}
