@@ -9,15 +9,19 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+:Asciidoctor: https://asciidoctor.org/[Asciidoctor]
 :Buildah: https://buildah.io/[Buildah]
 :Fedora: https://getfedora.org/[Fedora]
 :Fedora-Silverblue: https://silverblue.fedoraproject.org/[Fedora Silverblue]
 :fish: https://fishshell.com/[fish]
-:Fedora: https://getfedora.org/[Fedora]
 :Git: https://git-scm.com/[Git]
+:Linux: https://www.linuxfoundation.org/[Linux]
 :OpenSSH: https://www.openssh.com/[OpenSSH]
 :Podman: https://podman.io/[Podman]
 :pre-commit: https://pre-commit.com/[pre-commit]
+:Python: https://www.python.org/[Python]
+:Rouge: https://rouge.jneen.net/[Rouge]
+:Ruby: https://www.ruby-lang.org/en/[Ruby]
 
 image:https://img.shields.io/github/workflow/status/jwillikers/openssh-server-image/CI/main[GitHub Workflow Status]
 image:https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white[pre-commit, link=https://github.com/pre-commit/pre-commit]
@@ -151,19 +155,19 @@ Make sure to adhere to the project's link:CODE_OF_CONDUCT.adoc[Code of Conduct].
 This project is built on the hard work of countless open source contributors.
 Several of these projects are enumerated below.
 
-* https://asciidoctor.org/[Asciidoctor]
+* {Asciidoctor}
 * {Buildah}
 * {Fedora}
 * {Fedora-Silverblue}
 * {fish}
 * {Git}
-* https://www.linuxfoundation.org/[Linux]
+* {Linux}
 * {OpenSSH}
 * {Podman}
 * {pre-commit}
-* https://www.python.org/[Python]
-* https://rouge.jneen.net/[Rouge]
-* https://www.ruby-lang.org/en/[Ruby]
+* {Python}
+* {Rouge}
+* {Ruby
 
 == Code of Conduct
 

@@ -61,8 +61,8 @@ set -l script_directory (dirname (status --current-filename))
 cp $script_directory/99-sshd.conf $mountpoint/etc/ssh/sshd_config.d/99-sshd.conf
 or exit
 
-podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedoraproject.org/fedora:latest \
-    bash -c "useradd --root /mnt user"
+podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z --volume $mountpoint:/skel registry.fedoraproject.org/fedora:latest \
+    bash -c "useradd --create-home --root /mnt --skel /skel user"
 or exit
 
 podman run --rm --arch $architecture --volume $mountpoint:/mnt:Z registry.fedoraproject.org/fedora:latest \
