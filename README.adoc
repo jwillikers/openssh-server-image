@@ -37,7 +37,6 @@ Tags::
 
 Supported architectures::
 * `amd64` _(x86_64)_
-* `arm` _(armhfp)_
 * `arm64` _(aarch64)_
 
 Users::

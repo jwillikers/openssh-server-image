@@ -18,7 +18,6 @@ jobs:
         arch:
           - amd64
           - arm64
-          - arm
     steps:
       - name: Install the fish shell
         uses: fish-actions/install-fish@v1.1.0
@@ -55,7 +54,6 @@ jobs:
         arch:
           - amd64
           - arm64
-          - arm
     steps:
       - name: Install the fish shell
         uses: fish-actions/install-fish@v1.1.0
@@ -84,17 +82,6 @@ jobs:
     steps:
       - name: Create a manifest
         run: buildah manifest create openssh-server:latest
-
-      # armhfp
-      - uses: actions/download-artifact@v2
-        with:
-          name: openssh-server-arm
-
-      - name: Load the armhfp image
-        run: podman image load -i openssh-server-arm.tar
-
-      - name: Add the armhfp image to the manifest
-        run: buildah manifest add openssh-server:latest localhost/openssh-server-arm
 
       # aarch64
       - uses: actions/download-artifact@v2
